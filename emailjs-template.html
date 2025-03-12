@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .container {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .header {
+      text-align: center;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #4CAF50;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      color: #4CAF50;
+      margin: 0;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      color: #4CAF50;
+      font-size: 18px;
+      margin-top: 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+    .detail-row {
+      display: flex;
+      margin-bottom: 5px;
+    }
+    .detail-label {
+      font-weight: bold;
+      width: 150px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #777;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .total-row {
+      font-weight: bold;
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>New Order Received</h1>
+      <p>Order Date: {{order_date}}</p>
+    </div>
+    
+    <div class="section">
+      <h2>Customer Information</h2>
+      <div class="detail-row">
+        <div class="detail-label">Name:</div>
+        <div>{{name}}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Email:</div>
+        <div>{{email}}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Phone:</div>
+        <div>{{phone}}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Delivery Method:</div>
+        <div>{{delivery_method}}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Address:</div>
+        <div>{{delivery_address}}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Message:</div>
+        <div>{{message}}</div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2>Order Details</h2>
+      <!-- HTML Table Version -->
+      {{{order_details_html}}}
+      
+      <!-- Text Backup Version (Hidden by default) -->
+      <div style="display: none;">
+        {{order_details_text}}
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>Thank you for using FoodHub! This is an automated email, please do not reply.</p>
+    </div>
+  </div>
+</body>
+</html>
