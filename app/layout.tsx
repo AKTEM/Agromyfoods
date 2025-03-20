@@ -24,14 +24,14 @@ export default function RootLayout({
       <head>
         {/* Website Metadata */}
         <title>Food items Order and Delivery</title>
-        <meta name="description" content="Order Packaged food items and get them delivered fast Nationwide ,Nigeria." />
-        <meta name="keywords" content="Packaged food items delivery" />
+        <meta name="description" content="Order Packaged food items and get them delivered fast Nationwide, Nigeria." />
+        <meta name="keywords" content="Packaged food items order and delivery delivery. Good Quality Palm oil, Kilishi, Spices and Ijebu Garri" />
         <meta name="author" content="Agromyfoods" />
 
         {/* Open Graph Metadata for Social Media */}
-        <meta property="og:title" content="Food items Order and Delivery" />
-        <meta property="og:description" content="Fast food delivery service in Lagos." />
-        <meta property="og:image" content="/logo.png" />
+        <meta property="og:title" content="Packaged food items Order and Delivery" />
+        <meta property="og:description" content="Food stuffs and food item order and delivery service in Lagos.Good Quality Palm oil, Kilishi, Spices and Ijebu Garri" />
+        <meta property="og:image" content="img/AGROMYfood-logo.png" />
         <meta property="og:url" content="https://www.agromyfoods.com" />
 
         {/* Favicon */}
