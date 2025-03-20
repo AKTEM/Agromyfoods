@@ -22,6 +22,25 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Website Metadata */}
+        <title>Food items Order and Delivery</title>
+        <meta name="description" content="Order Packaged food items and get them delivered fast Nationwide ,Nigeria." />
+        <meta name="keywords" content="Packaged food items delivery" />
+        <meta name="author" content="Agromyfoods" />
+
+        {/* Open Graph Metadata for Social Media */}
+        <meta property="og:title" content="Food items Order and Delivery" />
+        <meta property="og:description" content="Fast food delivery service in Lagos." />
+        <meta property="og:image" content="/logo.png" />
+        <meta property="og:url" content="https://www.agromyfoods.com" />
+
+        {/* Favicon */}
+        <link rel="icon" href="img/AGROMYfood-logo.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+        {/* Responsive Meta Tag */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={inter.className} suppressHydrationWarning>

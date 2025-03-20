@@ -71,19 +71,19 @@ export default function CountUpSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <Stat 
             icon={<Users size={28} />} 
-            value={500} 
+            value={400} 
             label="Happy Customers" 
             suffix="+" 
           />
           <Stat 
             icon={<ShoppingBag size={28} />} 
-            value={600} 
+            value={500} 
             label="Orders Delivered" 
             suffix="+" 
           />
           <Stat 
             icon={<Award size={28} />} 
-            value={3} 
+            value={2} 
             label="Years of Excellence" 
           />
           <Stat 

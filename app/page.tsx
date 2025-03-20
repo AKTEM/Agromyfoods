@@ -170,23 +170,23 @@ const TESTIMONIALS = [
   {
     id: 1,
     name: 'Chioma A.',
-    comment: 'The jollof rice was absolutely delicious! Perfectly spiced and the delivery was prompt.',
+    comment: 'The Kilishi was absolutely delicious! Perfectly spiced and Very Beautiful Packaging.',
     rating: 5,
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&auto=format&fit=crop&q=60',
+    image: "/img/f1.jpg",
   },
   {
     id: 2,
     name: 'Emeka O.',
-    comment: 'Best egusi soup in Lagos! The pounded yam was smooth and the soup was rich with meat and seafood.',
+    comment: 'Good Palm Oil & Kilishi is top notch',
     rating: 5,
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=60',
+    image: "/img/m1.jpg",
   },
   {
     id: 3,
     name: 'Funke B.',
-    comment: 'The suya platter was amazing. Perfectly spiced and the meat was tender. Will order again!',
+    comment: 'Correct Garri Ijebu, Suya Spice is on point,  Will order again!',
     rating: 4,
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&auto=format&fit=crop&q=60',
+    image: "/img/f2.jpg",
   },
 ];
 
@@ -410,7 +410,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Quality Food Items</h3>
               <p className="text-muted-foreground">
-                We Sell Super Quality packaged food items
+                We sell super quality packaged food items
               </p>
             </motion.div>
             
@@ -426,7 +426,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Wide Coverage</h3>
               <p className="text-muted-foreground">
-                We deliver to all major areas in Lagos & Ogun State with no minimum order.
+                We deliver Nationwide/Worldwide
               </p>
             </motion.div>
           </div>
@@ -509,7 +509,7 @@ export default function Home() {
               What Our Customers Say
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what our satisfied customers have to say about our food and service.
+              Don't just take our word for it. Here's what our satisfied customers have to say about our food items and service.
             </p>
           </div>
 
@@ -560,7 +560,7 @@ export default function Home() {
               Contact Us
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Have questions or feedback? We'd love to hear from you. Reach out to us using any of the methods below.
+              Have questions or feedback? We'd love to hear from you. Reach out to us.
             </p>
           </div>
 
@@ -590,7 +590,7 @@ export default function Home() {
                 <Phone className="h-6 w-6 text-green-600 dark:text-green-400" />
               </div>
               <h3 className="font-semibold mb-2">Phone</h3>
-              <p className="text-muted-foreground">+234 123 456 7890</p>
+              <p className="text-muted-foreground">+234 907 792 3199</p>
             </motion.div>
 
             <motion.div
@@ -631,25 +631,26 @@ export default function Home() {
             {[
               {
                 id: 1,
-                title: 'The Art of Pizza Making: From Dough to Delicious',
-                excerpt: 'Discover the secrets behind making the perfect pizza, from kneading the dough to choosing the right toppings.',
-                image: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=800&auto=format&fit=crop&q=60',
-                date: 'March 15, 2024',
+                title: 'Health benefits of Palm oil',
+                excerpt: 'Discover the Health benefits of Palm oil',
+                image: "/img/P1L.jpg",
+                date: 'March 15, 2025',
               },
               {
                 id: 2,
-                title: 'Healthy Eating: Balance and Taste',
-                excerpt: 'Learn how to maintain a balanced diet without sacrificing flavor. Tips and tricks for healthy meal preparation.',
-                image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&auto=format&fit=crop&q=60',
-                date: 'March 12, 2024',
+                title: 'Health benefits of Garri',
+                excerpt: 'Discover the Health benefits of Garri',
+                image: "/img/Garri-2kg.jpg",
+                date: 'March 12, 2025',
               },
               {
                 id: 3,
-                title: 'Food Photography: Making Dishes Look Irresistible',
-                excerpt: 'Professional tips for taking stunning food photos that will make your dishes look as good as they taste.',
-                image: 'https://images.unsplash.com/photo-1458642849426-cfb724f15ef7?w=800&auto=format&fit=crop&q=60',
-                date: 'March 10, 2024',
+                title: 'Health benefits of Kilishi',
+                excerpt: 'Discover the Health benefits of Kilishi',
+                image:   "/img/K500.jpg",
+                date: 'March 10, 2025',
               },
+             
             ].map((post) => (
               <motion.div
                 key={post.id}
@@ -690,9 +691,9 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <div>
-              <h3 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-4">FoodHub</h3>
+              <h3 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-4">Agromyfoods</h3>
               <p className="text-muted-foreground mb-4">
-                Delivering delicious food right to your doorstep. Quality ingredients, exceptional taste.
+               We are your Best Plug for Packaged food items
               </p>
             </div>
             <div>
@@ -705,7 +706,7 @@ export default function Home() {
                 </li>
                 <li>
                   <Link href="/#menu" className="text-muted-foreground hover:text-green-600 transition-colors">
-                    Menu
+                    Shop
                   </Link>
                 </li>
                 <li>
@@ -725,22 +726,22 @@ export default function Home() {
               <ul className="space-y-2 text-muted-foreground">
                 <li>Agbeke Close, Obadeyi-Ijaiye</li>
                 <li>Lagos, Nigeria</li>
-                <li>Phone: +234 123 456 7890</li>
-                <li>Email: info@foodhub.com</li>
+                <li>Phone: +234 907 792 3199</li>
+                <li>Email: info@agromyfoods.com</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Hours</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li>Monday - Friday: 10am - 10pm</li>
-                <li>Saturday: 11am - 11pm</li>
-                <li>Sunday: 11am - 9pm</li>
+                <li>Monday - Friday: 9am - 10pm</li>
+                <li>Saturday: 8am - 10pm</li>
+                <li>Sunday: 8am - 10pm</li>
               </ul>
             </div>
           </div>
           <div className="border-t pt-8">
             <div className="text-center text-muted-foreground">
-              <p>© 2024 FoodHub. All rights reserved.</p>
+              <p>© 2025 Agromyfoods. All rights reserved.</p>
             </div>
           </div>
         </div>

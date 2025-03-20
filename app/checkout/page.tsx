@@ -327,7 +327,7 @@ export default function Checkout() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-green-600">Bank Transfer Details</h2>
             <img
-              src="https://moniepoint.com/assets/images/logo.svg"
+              src="img/monie.jpg"
               alt="Moniepoint"
               className="h-8"
             />

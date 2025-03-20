@@ -7,33 +7,33 @@ import { Clock, User } from 'lucide-react';
 const BLOG_POSTS = [
   {
     id: 1,
-    title: 'The Art of Pizza Making: From Dough to Delicious',
-    excerpt: 'Discover the secrets behind making the perfect pizza, from kneading the dough to choosing the right toppings.',
-    image: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=800&auto=format&fit=crop&q=60',
+    title: 'Health benefits of Palm oil',
+    excerpt: 'Discover the Health benefits of Palm oil',
+    image:  "/img/P1L.jpg",
     author: 'Chef Maria',
-    date: 'March 15, 2024',
+    date: 'March 15, 2025',
     readTime: '5 min read',
-    category: 'Cooking Tips',
+    category: 'Food items',
   },
   {
     id: 2,
-    title: 'Healthy Eating: Balance and Taste',
-    excerpt: 'Learn how to maintain a balanced diet without sacrificing flavor. Tips and tricks for healthy meal preparation.',
-    image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&auto=format&fit=crop&q=60',
+    title: 'Health benefits of Garri',
+    excerpt: 'Discover the Health benefits of Garri',
+    image: "/img/Garri-2kg.jpg",
     author: 'Nutritionist Sarah',
-    date: 'March 12, 2024',
+    date: 'March 12, 2025',
     readTime: '4 min read',
     category: 'Health',
   },
   {
     id: 3,
-    title: 'Food Photography: Making Dishes Look Irresistible',
-    excerpt: 'Professional tips for taking stunning food photos that will make your dishes look as good as they taste.',
-    image: 'https://images.unsplash.com/photo-1458642849426-cfb724f15ef7?w=800&auto=format&fit=crop&q=60',
-    author: 'John Smith',
-    date: 'March 10, 2024',
+    title: 'Health benefits of Kilishi',
+    excerpt: 'Discover the Health benefits of Kilishi',
+    image:  "/img/K500.jpg",
+    author: 'Mrs Lawrence',
+    date: 'March 10, 2025',
     readTime: '6 min read',
-    category: 'Photography',
+    category: 'Health',
   },
 ];
 
@@ -44,7 +44,7 @@ export default function Blog() {
       <div className="bg-gradient-to-b from-green-50 to-white dark:from-green-900 dark:to-background py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold text-center text-green-600 dark:text-green-400 mb-4">
-            FoodHub Blog
+            Agromyfoods Blog
           </h1>
           <p className="text-center text-muted-foreground max-w-2xl mx-auto">
             Discover culinary insights, cooking tips, and food stories from our expert chefs and food enthusiasts.
