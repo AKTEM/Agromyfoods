@@ -24,7 +24,11 @@ const EMAILJS_SERVICE_ID = 'service_d1zg27c';
 const EMAILJS_TEMPLATE_ID = 'template_xyu4tjl';
 const EMAILJS_PUBLIC_KEY = 'bsfiqrl3PMvQYGnet';
 
-const PICKUP_ADDRESS = 'Agbeke Close, Obadeyi-Ijaiye area, Lagos';
+const PICKUP_ADDRESS = [
+  '(1)No 2, Agbeke Close, Obadeyi-Ijaiye Area, Lagos - (2)No 24, Oyinkan Abayomi Drive, Federal High Court, Ikoyi, Lagos'
+];
+
+
 
 export default function Checkout() {
   const { items, total, clearCart, updateQuantity, removeItem } = useCart();
@@ -420,7 +424,7 @@ export default function Checkout() {
             {isSubmitting ? 'Processing...' : 'Proceed with Order'}
           </Button>
           <p className="text-center text-sm text-muted-foreground">
-            You'll receive order confirmation call or SMS from us shortly.
+            You'll receive order confirmation through via Whatsapp, Call or Sms from s hortly.
           </p>
         </div>
         <OrderConfirmation />
