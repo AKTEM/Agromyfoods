@@ -369,7 +369,7 @@ export default function Home() {
               <p className="text-muted-foreground mb-6">
               With a commitment to excellence and customer satisfaction, we ensure every order is handled with care, making healthy and delicious food more accessible to everyone in Nigeria.
               </p>
-              <Button className="bg-green-600 hover:bg-green-700">Learn More</Button>
+             
             </motion.div>
           </div>
         </div>
