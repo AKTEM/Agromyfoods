@@ -23,17 +23,41 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Website Metadata */}
-        <title>Food items Order and Delivery</title>
-        <meta name="description" content="Order Packaged food items and get them delivered fast Nationwide, Nigeria." />
-        <meta name="keywords" content="Packaged food items order and delivery delivery. Good Quality Palm oil, Kilishi, Spices and Ijebu Garri" />
+        <title>Order Packaged Nigerian Food Items Online | Fast Delivery</title>
+        <meta 
+          name="Agromyfoods offers a wide selection of premium packaged Nigerian food items, including Kilishi (beef jerky), Ijebu Garri, natural spices, and authentic palm oil. Order online for fast and reliable delivery nationwide across Nigeria. Enjoy fresh, high-quality traditional Nigerian delicacies delivered straight to your door." 
+          content="Order premium Nigerian packaged food items like Kilishi (Beef Jerky), Ijebu Garri, natural spices, and palm oil. Fast delivery across Nigeria." 
+        />
+        <meta 
+          name="keywords" 
+          content="order packaged Nigerian food, Kilishi, Ijebu Garri, natural spices, premium palm oil, Nigerian snacks, food delivery, buy Kilishi online, fast food delivery Nigeria, traditional Nigerian food, packaged food Nigeria, Nigerian delicacies, authentic Nigerian spices, food delivery Lagos, Nigerian beef jerky" 
+        />
         <meta name="author" content="Agromyfoods" />
-
+        
         {/* Open Graph Metadata for Social Media */}
-        <meta property="og:title" content="Packaged food items Order and Delivery" />
-        <meta property="og:description" content="Food stuffs and food item order and delivery service in Lagos.Good Quality Palm oil, Kilishi, Spices and Ijebu Garri" />
-        <meta property="og:image" content="img/AGROMYfood-logo.png" />
+        <meta property="og:title" content="Order Packaged Nigerian Food Items | Kilishi, Ijebu Garri, Spices & Palm Oil" />
+        <meta 
+          property="og:description" 
+          content="Agromyfoods offers a wide range of packaged Nigerian food items including Kilishi, Ijebu Garri, authentic spices, and premium palm oil. Order online with fast delivery nationwide." 
+        />
+        <meta 
+          property="og:image" 
+          content="https://www.agromyfoods.com/img/AGROMYfood-logo.png" 
+        />
         <meta property="og:url" content="https://www.agromyfoods.com" />
-
+        
+        {/* Twitter Card Metadata */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Order Packaged Nigerian Food Items | Kilishi, Ijebu Garri, Spices & Palm Oil" />
+        <meta 
+          name="twitter:description" 
+          content="Shop for Kilishi, Ijebu Garri, spices, and premium palm oil on Agromyfoods. Order now for fast and reliable delivery across Nigeria." 
+        />
+        <meta 
+          name="twitter:image" 
+          content="https://www.agromyfoods.com/img/AGROMYfood-logo.png" 
+        />
+        
         {/* Favicon */}
         <link rel="icon" href="img/AGROMYfood-logo.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

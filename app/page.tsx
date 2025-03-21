@@ -693,7 +693,7 @@ export default function Home() {
             <div>
               <h3 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-4">Agromyfoods</h3>
               <p className="text-muted-foreground mb-4">
-               We are your Best Plug for Packaged food items
+               For Bulk & Wholesale Orders, We Sell at Discounted Prices.
               </p>
             </div>
             <div>
@@ -724,7 +724,7 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li>Agbeke Close, Obadeyi-Ijaiye</li>
+                <li>Agbeke Close, Obadeyi-Ijaiye, Lagos</li>
                 <li>Lagos, Nigeria</li>
                 <li>Phone: +234 907 792 3199</li>
                 <li>Email: info@agromyfoods.com</li>
@@ -735,7 +735,7 @@ export default function Home() {
               <ul className="space-y-2 text-muted-foreground">
                 <li>Monday - Friday: 9am - 10pm</li>
                 <li>Saturday: 8am - 10pm</li>
-                <li>Sunday: 8am - 10pm</li>
+               
               </ul>
             </div>
           </div>

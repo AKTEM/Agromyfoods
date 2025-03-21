@@ -331,7 +331,7 @@ export default function Checkout() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-green-600">Bank Transfer Details</h2>
             <img
-              src="img/monie.jpg"
+              src="img/Monie.jpg"
               alt="Moniepoint"
               className="h-8"
             />
@@ -613,7 +613,7 @@ export default function Checkout() {
                 {isSubmitting ? 'Processing...' : 'Pickup Order'}
               </Button>
               <p className="text-center text-sm text-muted-foreground">
-                You'll receive order confirmation call or SMS from us shortly.
+                You'll receive Your Order & Payment Confirmation via Whatsapp, SMS or Call.
               </p>
             </div>
           </div>
