@@ -13,7 +13,7 @@ const FEATURED_PRODUCTS = [
   {
     id: '1',
     name: 'Ijebu Garri 1kg',
-    description: 'Super Cruncy Ijebu Garri',
+    description: 'Super crunchy ijebu garri',
     price: 2000,
     image:  "/img/Garri-1kg.jpg",
     category: 'Ijebu Garri',
@@ -21,7 +21,7 @@ const FEATURED_PRODUCTS = [
   {
     id: '2',
     name:  'Ijebu Garri 2kg',
-    description: 'Super Cruncy Ijebu Garri',
+    description: 'Super crunchy ijebu garri',
     price: 4000,
     image: "/img/Garri-2kg.jpg",
     category:'Ijebu Garri',
@@ -29,7 +29,7 @@ const FEATURED_PRODUCTS = [
   {
     id: '3',
       name: 'Ijebu Garri 2.5kg',
-      description: 'Super Cruncy Ijebu Garri',
+      description: 'Super crunchy ijebu garri',
       price: 5000,
       image:  "/img/Garri-2.5kg.jpg",
       category: 'Ijebu Garri',
@@ -37,7 +37,7 @@ const FEATURED_PRODUCTS = [
   {
     id: '4',
     name: 'Ijebu Garri 5kg',
-    description: 'Super Cruncy Ijebu Garri',
+    description: 'Super crunchy ijebu garri',
     price: 10000,
     image: "/img/Garri-5kg.jpg" ,
     category: 'Ijebu Garri',
