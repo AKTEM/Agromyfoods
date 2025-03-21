@@ -613,7 +613,7 @@ export default function Checkout() {
                 {isSubmitting ? 'Processing...' : 'Pickup Order'}
               </Button>
               <p className="text-center text-sm text-muted-foreground">
-                You'll receive Your Order & Payment Confirmation via Whatsapp, SMS or Call.
+                You'll receive Your Order & Payment Confirmation via Whatsapp, SMS or Call, very Soon.
               </p>
             </div>
           </div>
