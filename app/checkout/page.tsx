@@ -279,7 +279,7 @@ export default function Checkout() {
             className="bg-green-600 hover:bg-green-700"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Processing...' : 'Confirm Order'}
+            {isSubmitting ? 'Processing...' : 'Send Order'}
           </Button>
         </SheetFooter>
       </SheetContent>
@@ -292,10 +292,10 @@ export default function Checkout() {
         <div className="mb-4 text-green-600 flex justify-center">
           <CheckCircle className="h-16 w-16" />
         </div>
-        <h2 className="text-2xl font-bold mb-2">Thank You for Your Order!</h2>
+        <h2 className="text-2xl font-bold mb-2">Your Order has been Sent!</h2>
         <p className="text-muted-foreground mb-6">
           {showBankTransfer 
-            ? 'Your order has been received. We will contact you shortly to confirm delivery details.'
+            ? 'Your order has been sent. We will Confirm your Order and Payment Very SOON.'
             : 'Your order has been received. You can pick up your order at our location.'}
         </p>
         <p className="text-sm text-muted-foreground mb-6">
