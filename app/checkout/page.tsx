@@ -28,8 +28,6 @@ const PICKUP_ADDRESS = [
   '(1)No 2, Agbeke Close, Obadeyi-Ijaiye Area, Lagos - (2)No 24, Oyinkan Abayomi Drive, Federal High Court, Ikoyi, Lagos'
 ];
 
-
-
 export default function Checkout() {
   const { items, total, clearCart, updateQuantity, removeItem } = useCart();
   const { toast } = useToast();
@@ -50,6 +48,13 @@ export default function Checkout() {
     phone: '',
     address: '',
   });
+
+  // Add useEffect to scroll to top when bank transfer view is shown
+  useEffect(() => {
+    if (showBankTransfer) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [showBankTransfer]);
 
   const validateForm = () => {
     let isValid = true;
