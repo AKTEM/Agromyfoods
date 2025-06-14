@@ -6,6 +6,7 @@ import { Inter } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
 import Navbar from '@/components/Navbar';
 import { CartProvider } from '@/context/CartContext';
+import { AuthProvider } from '@/context/AuthContext';
 
 // Load Inter font with a subset of weights to improve performance
 const inter = Inter({
@@ -74,13 +75,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <CartProvider>
-            <div className="min-h-screen bg-background">
-              <Navbar />
-              <main>{children}</main>
-              <Toaster />
-            </div>
-          </CartProvider>
+          <AuthProvider>
+            <CartProvider>
+              <div className="min-h-screen bg-background">
+                <Navbar />
+                <main>{children}</main>
+                <Toaster />
+              </div>
+            </CartProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

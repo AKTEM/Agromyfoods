@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, Plus, Minus, Trash2, MapPin, Receipt, CheckCircle, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Plus, Minus, Trash2, MapPin, Receipt, CheckCircle, AlertCircle, User } from 'lucide-react';
 import Link from 'next/link';
 import emailjs from '@emailjs/browser';
+import AuthModal from '@/components/auth/AuthModal';
 import {
   Sheet,
   SheetContent,
@@ -30,11 +32,13 @@ const PICKUP_ADDRESS = [
 
 export default function Checkout() {
   const { items, total, clearCart, updateQuantity, removeItem } = useCart();
+  const { user, userProfile } = useAuth();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showBankTransfer, setShowBankTransfer] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -48,6 +52,19 @@ export default function Checkout() {
     phone: '',
     address: '',
   });
+
+  // Pre-fill form with user data when user is logged in
+  useEffect(() => {
+    if (user && userProfile) {
+      setFormData({
+        name: userProfile.displayName || '',
+        email: user.email || '',
+        phone: userProfile.phone || '',
+        address: userProfile.address || '',
+        message: '',
+      });
+    }
+  }, [user, userProfile]);
 
   // Add useEffect to scroll to top when bank transfer view is shown
   useEffect(() => {
@@ -157,6 +174,7 @@ export default function Checkout() {
       delivery_method: showBankTransfer ? 'Delivery (Bank Transfer)' : 'Pickup',
       delivery_address: showBankTransfer ? formData.address : PICKUP_ADDRESS,
       order_date: new Date().toLocaleString(),
+      user_status: user ? 'Registered User' : 'Guest',
     };
   };
 
@@ -254,6 +272,9 @@ export default function Checkout() {
               <p><span className="font-medium">Address:</span> {formData.address || 'Not provided'}</p>
               {formData.message && (
                 <p><span className="font-medium">Message:</span> {formData.message}</p>
+              )}
+              {user && (
+                <p><span className="font-medium">Account:</span> Registered User</p>
               )}
             </div>
           </div>
@@ -360,6 +381,7 @@ export default function Checkout() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className={formErrors.name ? "border-red-500" : ""}
+                disabled={!!user}
               />
               {formErrors.name && (
                 <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>
@@ -375,6 +397,7 @@ export default function Checkout() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className={formErrors.email ? "border-red-500" : ""}
+                disabled={!!user}
               />
               {formErrors.email && (
                 <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
@@ -525,104 +548,139 @@ export default function Checkout() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block mb-2">
-              Name <span className="text-red-500">*</span>
-            </label>
-            <Input
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className={formErrors.name ? "border-red-500" : ""}
-            />
-            {formErrors.name && (
-              <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>
-            )}
-          </div>
-          
-          <div>
-            <label className="block mb-2">
-              Email <span className="text-red-500">*</span>
-            </label>
-            <Input
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={formErrors.email ? "border-red-500" : ""}
-            />
-            {formErrors.email && (
-              <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
-            )}
-          </div>
-          
-          <div>
-            <label className="block mb-2">
-              Phone <span className="text-red-500">*</span>
-            </label>
-            <Input
-              type="tel"
-              value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className={formErrors.phone ? "border-red-500" : ""}
-            />
-            {formErrors.phone && (
-              <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block mb-2">Address</label>
-            <Input
-              value={formData.address}
-              onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-              placeholder="Enter your address"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-2">Message (Optional)</label>
-            <Textarea
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              placeholder="Add any special instructions or notes for your order..."
-            />
-          </div>
-
-          <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg mb-4">
-            <div className="flex items-start gap-3">
-              <MapPin className="h-5 w-5 text-green-600 mt-1" />
-              <div>
-                <h3 className="font-medium text-green-600">Pickup Location</h3>
-                <p className="text-sm text-muted-foreground">{PICKUP_ADDRESS}</p>
+        <div className="space-y-6">
+          {/* User Status Display */}
+          {user ? (
+            <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+              <div className="flex items-center gap-3">
+                <div className="bg-green-100 dark:bg-green-800 w-10 h-10 rounded-full flex items-center justify-center">
+                  <User className="h-5 w-5 text-green-600 dark:text-green-400" />
+                </div>
+                <div>
+                  <p className="font-medium text-green-600">Signed in as {userProfile?.displayName || user.email}</p>
+                  <p className="text-sm text-muted-foreground">Your information has been pre-filled</p>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-medium text-blue-600">Want to save your information?</p>
+                  <p className="text-sm text-muted-foreground">Sign in or create an account for faster checkout</p>
+                </div>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowAuthModal(true)}
+                  className="border-blue-600 text-blue-600 hover:bg-blue-50"
+                >
+                  Sign In
+                </Button>
+              </div>
+            </div>
+          )}
 
-          <div className="space-y-4">
-            <Button
-              type="button"
-              className="w-full bg-green-600 hover:bg-green-700"
-              onClick={() => setShowBankTransfer(true)}
-              disabled={items.length === 0}
-            >
-              Delivery (Bank Transfer)
-            </Button>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block mb-2">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <Input
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className={formErrors.name ? "border-red-500" : ""}
+                disabled={!!user}
+              />
+              {formErrors.name && (
+                <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>
+              )}
+            </div>
             
+            <div>
+              <label className="block mb-2">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <Input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className={formErrors.email ? "border-red-500" : ""}
+                disabled={!!user}
+              />
+              {formErrors.email && (
+                <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
+              )}
+            </div>
+            
+            <div>
+              <label className="block mb-2">
+                Phone <span className="text-red-500">*</span>
+              </label>
+              <Input
+                type="tel"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                className={formErrors.phone ? "border-red-500" : ""}
+              />
+              {formErrors.phone && (
+                <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>
+              )}
+            </div>
+
+            <div>
+              <label className="block mb-2">Address</label>
+              <Input
+                value={formData.address}
+                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                placeholder="Enter your address"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2">Message (Optional)</label>
+              <Textarea
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                placeholder="Add any special instructions or notes for your order..."
+              />
+            </div>
+
+            <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg mb-4">
+              <div className="flex items-start gap-3">
+                <MapPin className="h-5 w-5 text-green-600 mt-1" />
+                <div>
+                  <h3 className="font-medium text-green-600">Pickup Location</h3>
+                  <p className="text-sm text-muted-foreground">{PICKUP_ADDRESS}</p>
+                </div>
+              </div>
+            </div>
+
             <div className="space-y-4">
               <Button
-                type="submit"
-                variant="outline"
-                className="w-full border-green-600 text-green-600 hover:bg-green-50"
-                disabled={items.length === 0 || isSubmitting}
+                type="button"
+                className="w-full bg-green-600 hover:bg-green-700"
+                onClick={() => setShowBankTransfer(true)}
+                disabled={items.length === 0}
               >
-                {isSubmitting ? 'Processing...' : 'Pickup Order'}
+                Delivery (Bank Transfer)
               </Button>
-              <p className="text-center text-sm text-muted-foreground">
-                You'll receive Your Order & Payment Confirmation via Whatsapp, SMS or Call, very Soon.
-              </p>
+              
+              <div className="space-y-4">
+                <Button
+                  type="submit"
+                  variant="outline"
+                  className="w-full border-green-600 text-green-600 hover:bg-green-50"
+                  disabled={items.length === 0 || isSubmitting}
+                >
+                  {isSubmitting ? 'Processing...' : 'Pickup Order'}
+                </Button>
+                <p className="text-center text-sm text-muted-foreground">
+                  You'll receive Your Order & Payment Confirmation via Whatsapp, SMS or Call, very Soon.
+                </p>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
 
       {/* Fixed bottom checkout bar for mobile */}
@@ -651,6 +709,13 @@ export default function Checkout() {
       </div>
       
       <OrderConfirmation />
+      
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        defaultTab="signin"
+      />
     </div>
   );
 }
