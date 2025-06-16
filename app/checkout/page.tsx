@@ -7,8 +7,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, Plus, Minus, Trash2, MapPin, Receipt, CheckCircle, AlertCircle, User } from 'lucide-react';
+import { ArrowLeft, Plus, Minus, Trash2, MapPin, Receipt, CheckCircle, AlertCircle, User, CreditCard } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import emailjs from '@emailjs/browser';
 import AuthModal from '@/components/auth/AuthModal';
 import {
@@ -34,6 +35,7 @@ export default function Checkout() {
   const { items, total, clearCart, updateQuantity, removeItem } = useCart();
   const { user, userProfile } = useAuth();
   const { toast } = useToast();
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showBankTransfer, setShowBankTransfer] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -229,6 +231,29 @@ export default function Checkout() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handlePaystackPayment = () => {
+    if (!user) {
+      toast({
+        title: 'Authentication Required',
+        description: 'Please sign in to make a payment.',
+        variant: 'destructive',
+      });
+      setShowAuthModal(true);
+      return;
+    }
+
+    if (!validateForm()) {
+      toast({
+        title: 'Please fill all required fields',
+        description: 'All fields marked with * are required',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    router.push('/payment');
   };
 
   const OrderConfirmation = () => (
@@ -658,6 +683,16 @@ export default function Checkout() {
             <div className="space-y-4">
               <Button
                 type="button"
+                onClick={handlePaystackPayment}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                disabled={items.length === 0}
+              >
+                <CreditCard className="h-4 w-4 mr-2" />
+                Pay with Paystack (₦{total.toFixed(2)})
+              </Button>
+
+              <Button
+                type="button"
                 className="w-full bg-green-600 hover:bg-green-700"
                 onClick={() => setShowBankTransfer(true)}
                 disabled={items.length === 0}
@@ -690,6 +725,14 @@ export default function Checkout() {
           <p className="font-bold text-green-600">₦{total.toFixed(2)}</p>
         </div>
         <div className="flex gap-2">
+          <Button
+            variant="outline"
+            className="border-blue-600 text-blue-600"
+            onClick={handlePaystackPayment}
+            disabled={items.length === 0}
+          >
+            Paystack
+          </Button>
           <Button
             variant="outline"
             className="border-green-600 text-green-600"
