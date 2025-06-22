@@ -691,24 +691,24 @@ export default function Checkout() {
                 Pay with Paystack (₦{total.toFixed(2)})
               </Button>
 
-              {/* <Button
+              <Button
                 type="button"
                 className="w-full bg-green-600 hover:bg-green-700"
                 onClick={() => setShowBankTransfer(true)}
                 disabled={items.length === 0}
               >
                 Delivery (Bank Transfer)
-              </Button> */}
+              </Button>
               
               <div className="space-y-4">
-                {/* <Button
+                <Button
                   type="submit"
                   variant="outline"
                   className="w-full border-green-600 text-green-600 hover:bg-green-50"
                   disabled={items.length === 0 || isSubmitting}
                 >
                   {isSubmitting ? 'Processing...' : 'Pickup Order'}
-                </Button> */}
+                </Button>
                 <p className="text-center text-sm text-muted-foreground">
                   You'll receive Your Order & Payment Confirmation via Whatsapp, SMS or Call, very Soon.
                 </p>
@@ -733,21 +733,21 @@ export default function Checkout() {
           >
             Paystack
           </Button>
-          {/* <Button
+          <Button
             variant="outline"
             className="border-green-600 text-green-600"
             onClick={() => setShowBankTransfer(true)}
             disabled={items.length === 0}
           >
             Delivery
-          </Button> */}
-          {/* <Button
+          </Button>
+          <Button
             className="bg-green-600 hover:bg-green-700"
             onClick={handleSubmit}
             disabled={items.length === 0 || isSubmitting}
           >
             Pickup
-          </Button> */}
+          </Button>
         </div>
       </div>
       
