@@ -17,7 +17,7 @@ const BLOG_POSTS = [
   },
   {
     id: 2,
-    title: 'Health benefits of Garri',
+    title: 'Health benefits of Garri Ijebu',
     excerpt: 'Discover the Health benefits of Garri',
     image: "/img/Garri-2kg.jpg",
     author: 'Nutritionist Sarah',
