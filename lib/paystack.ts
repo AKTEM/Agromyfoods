@@ -1,9 +1,8 @@
-// Paystack configuration and utilities
-export const PAYSTACK_PUBLIC_KEY = 'pk_test_f37ff43a7bc59161a830269c68d2243c605e3347';
+// Paystack configuration and utilities from environment variables
+export const PAYSTACK_PUBLIC_KEY = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY || '';
 
-// Note: Secret key should be stored in environment variables in production
-// For this demo, we'll use it directly but in production use process.env.PAYSTACK_SECRET_KEY
-export const PAYSTACK_SECRET_KEY = 'sk_test_12•••••a53'; // Replace with full key
+// Secret key from environment variables (server-side only)
+export const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY || '';
 
 export interface PaystackTransactionData {
   email: string;

@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Navbar from '@/components/Navbar';
 import { CartProvider } from '@/context/CartContext';
 import { AuthProvider } from '@/context/AuthContext';
+import { OrderProvider } from '@/context/OrderContext';
 
 // Load Inter font with a subset of weights to improve performance
 const inter = Inter({
@@ -77,11 +78,13 @@ export default function RootLayout({
         >
           <AuthProvider>
             <CartProvider>
-              <div className="min-h-screen bg-background">
-                <Navbar />
-                <main>{children}</main>
-                <Toaster />
-              </div>
+              <OrderProvider>
+                <div className="min-h-screen bg-background">
+                  <Navbar />
+                  <main>{children}</main>
+                  <Toaster />
+                </div>
+              </OrderProvider>
             </CartProvider>
           </AuthProvider>
         </ThemeProvider>

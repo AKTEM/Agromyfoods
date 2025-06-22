@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useCart } from '@/context/CartContext';
+import { useOrders } from '@/context/OrderContext';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, CreditCard, Shield, CheckCircle, AlertCircle } from 'lucide-react';
@@ -26,6 +27,7 @@ declare global {
 export default function PaystackPayment({ onSuccess, onClose }: PaystackPaymentProps) {
   const { user, userProfile } = useAuth();
   const { items, total, clearCart } = useCart();
+  const { createOrder, updatePaymentStatus } = useOrders();
   const { toast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
@@ -124,6 +126,29 @@ export default function PaystackPayment({ onSuccess, onClose }: PaystackPaymentP
         reference,
       });
 
+      // Create order first
+      const orderId = await createOrder({
+        userId: user.uid,
+        userEmail: user.email!,
+        userName: userProfile.displayName || 'Customer',
+        userPhone: userProfile.phone || '',
+        userAddress: userProfile.address || '',
+        items: items.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image: item.image,
+        })),
+        total,
+        status: 'pending',
+        paymentMethod: 'paystack',
+        paymentStatus: 'pending',
+        paymentReference: reference,
+        deliveryMethod: 'pickup',
+        deliveryAddress: userProfile.address || null,
+      });
+
       const paystack = window.PaystackPop.setup({
         key: PAYSTACK_PUBLIC_KEY,
         email: user.email,
@@ -147,13 +172,18 @@ export default function PaystackPayment({ onSuccess, onClose }: PaystackPaymentP
               variable_name: 'order_items',
               value: items.map(item => `${item.name} (${item.quantity})`).join(', '),
             },
+            {
+              display_name: 'Order ID',
+              variable_name: 'order_id',
+              value: orderId,
+            },
           ],
         },
         callback: function(response: any) {
           console.log('Payment callback:', response);
           setIsProcessing(false);
           if (response.status === 'success') {
-            handlePaymentSuccess(response);
+            handlePaymentSuccess(response, orderId);
           } else {
             toast({
               title: 'Payment Failed',
@@ -187,9 +217,12 @@ export default function PaystackPayment({ onSuccess, onClose }: PaystackPaymentP
     }
   };
 
-  const handlePaymentSuccess = async (response: any) => {
+  const handlePaymentSuccess = async (response: any, orderId: string) => {
     try {
       console.log('Payment successful:', response);
+      
+      // Update payment status in the order
+      await updatePaymentStatus(orderId, 'paid', response.reference);
       
       setPaymentSuccess(true);
       
@@ -226,7 +259,7 @@ export default function PaystackPayment({ onSuccess, onClose }: PaystackPaymentP
           Payment Successful!
         </h2>
         <p className="text-muted-foreground mb-4">
-          Thank you for your purchase. Your order has been confirmed.
+          Thank you for your purchase. Your order has been confirmed and saved to your order history.
         </p>
         <p className="text-sm text-muted-foreground">
           Redirecting you shortly...
